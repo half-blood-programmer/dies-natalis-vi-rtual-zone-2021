@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import '../css/Orientation.css';
-import useWindowOrientation from "use-window-orientation";
-import DeviceOrientation, { Orientation } from 'react-screen-orientation'
 
 
 import SideNav from './SideNav';

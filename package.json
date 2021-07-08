@@ -26,7 +26,6 @@
     "reactjs-popup": "^2.0.4",
     "stylish": "^1.0.0",
     "sweetalert2-react": "^0.8.3",
-    "use-window-orientation": "^1.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
