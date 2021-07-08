@@ -11,7 +11,6 @@ import JadwalDisnat from './modal/JadwalDiesnat';
 import { faSpeakerDeck } from '@fortawesome/free-brands-svg-icons';
 import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
-import canvas2image from "canvas2image-2";
 
 export default function ButtonHelper () {
 function popupMap(){
