@@ -202,7 +202,7 @@ var mapTileData = new TileMap();
           })
     }
 
-    var tileset = null, tilesetURL = "Set-printilan.png", tilesetLoaded = false;
+    var tileset = null, tilesetURL = "Set-Printilan.png", tilesetLoaded = false;
     var characterset = null, charactersetURL = `${skins}`, charactersetLoaded = false;
     
     var gameTime = 0;
