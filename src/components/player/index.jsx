@@ -1,6 +1,5 @@
 
 import React from 'react';
-import Sprite from '../sprite';
 import Actor from '../actor';
 import useKeyPress from '../hooks/use-key-press';
 import useWalk from '../hooks/use-walk';

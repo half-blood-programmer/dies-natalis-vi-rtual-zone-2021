@@ -1,6 +1,6 @@
-import {useContext, useEffect} from 'react';
-import { useState } from "react";
-import Modal from '../Modal';
+// import {useContext, useEffect} from 'react';
+// import { useState } from "react";
+// import Modal from '../Modal';
 // import CanvasContext from './canvasContext';
 // import {TILE_SIZE} from './constants';
 
@@ -10,14 +10,14 @@ import Swal from 'sweetalert2';
 import '../../css/Stick.css';
 // import '../../css/Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowLeft, faArrowRight, faArrowUp, faCalendar, faPlay, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import Sprite from '../sprite';
-import Header from '../Header';
+import { faArrowDown, faArrowLeft, faArrowRight, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+// import Sprite from '../sprite';
+// import Header from '../Header';
 
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
 
-import JadwalDisnat from '../modal/JadwalDiesnat';
-import Player from '../player';
+// import JadwalDisnat from '../modal/JadwalDiesnat';
+// import Player from '../player';
 
 export default function TiledMap({skins}){
     var ctx = null;
@@ -248,7 +248,7 @@ var mapTileData = new TileMap();
             else if(this.stacks[i].type == id &&
                 this.stacks[i].qty < itemTypes[id].maxStack)
             {
-                var maxHere = (itemTypes[id].maxStack - this.stacks[i].qty);
+                maxHere = (itemTypes[id].maxStack - this.stacks[i].qty);
                 if(maxHere > qty) { maxHere = qty; }
                 
                 this.stacks[i].qty+= maxHere;
@@ -589,7 +589,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
             }
             if(this.tileTo[1] != this.tileFrom[1])
             {
-                var diff = (tileH / moveSpeed) * (t-this.timeMoved);
+                diff = (tileH / moveSpeed) * (t-this.timeMoved);
                 this.position[1]+= (this.tileTo[1]<this.tileFrom[1] ? 0 - diff : diff);
             }
     
@@ -802,28 +802,28 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
 	var mo1 = new MapObject(2); mo1.placeAt(30, 33);
 	var mo2 = new MapObject(2); mo2.placeAt(29, 33);
 	var mo3 = new MapObject(2); mo3.placeAt(34, 33);
-	var mo3 = new MapObject(2); mo3.placeAt(35, 33);
+	var mo4 = new MapObject(2); mo4.placeAt(35, 33);
 
-	var mo1 = new MapObject(8); mo1.placeAt(31, 33);
-	var mo2 = new MapObject(9); mo2.placeAt(31, 34);
-	var mo3 = new MapObject(8); mo3.placeAt(33, 33);
-	var mo3 = new MapObject(9); mo3.placeAt(33, 34);
+	var mo5 = new MapObject(8); mo5.placeAt(31, 33);
+	var mo6 = new MapObject(9); mo6.placeAt(31, 34);
+	var mo7 = new MapObject(8); mo7.placeAt(33, 33);
+	var mo8 = new MapObject(9); mo8.placeAt(33, 34);
 
-	var mo1 = new MapObject(4); mo1.placeAt(30, 32);
-	var mo2 = new MapObject(4); mo2.placeAt(29, 32);
-	var mo3 = new MapObject(4); mo3.placeAt(28, 32);
-	var mo3 = new MapObject(4); mo3.placeAt(27, 32);
+	var mo9 = new MapObject(4); mo9.placeAt(30, 32);
+	var mo10 = new MapObject(4); mo10.placeAt(29, 32);
+	var mo11 = new MapObject(4); mo11.placeAt(28, 32);
+	var mo12 = new MapObject(4); mo12.laceAt(27, 32);
 	
-	var mo11 = new MapObject(1); mo11.placeAt(24, 25);
-	var mo12 = new MapObject(2); mo12.placeAt(27, 25);
+	var mo19 = new MapObject(1); mo19.placeAt(24, 25);
+	var mo20 = new MapObject(2); mo20.placeAt(27, 25);
 	
-	var mo4 = new MapObject(3); mo4.placeAt(25, 21);
-	var mo5 = new MapObject(3); mo5.placeAt(23, 22);
-	var mo6 = new MapObject(3); mo6.placeAt(21, 23);
+	var mo13 = new MapObject(3); mo13.placeAt(25, 21);
+	var mo14 = new MapObject(3); mo14.placeAt(23, 22);
+	var mo15 = new MapObject(3); mo15.placeAt(21, 23);
 	
-	var mo7 = new MapObject(3); mo7.placeAt(21, 21);
-	var mo8 = new MapObject(3); mo8.placeAt(25, 25);
-	var mo9 = new MapObject(3); mo9.placeAt(22, 26);
+	var mo16 = new MapObject(3); mo16.placeAt(21, 21);
+	var mo17 = new MapObject(3); mo17.placeAt(25, 25);
+	var mo18 = new MapObject(3); mo18.placeAt(22, 26);
 	
 	for(var i = 3; i < 8; i++)
 	{
@@ -924,7 +924,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
 	}
 	
 	
-        var sprite = player.sprites[player.direction];
+        sprite = player.sprites[player.direction];
         // var j =1;
         // ctx.drawImage(characterset,
         //     sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h,

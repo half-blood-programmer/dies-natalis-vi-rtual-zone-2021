@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../css/Orientation.css';
 
 
-import SideNav from './SideNav';
+// import SideNav from './SideNav';
 import Header from './Header';
 import ButtonHelper from './ButtonHelper';
 import Footer from './Footer';
-import Character from './Character';
-import Sprite from './sprite';
-import Actor from './actor';
-import Player from './player';
-import OffCanvas from './performance/offcanvas';
-import LayerMap from './square/layers';
+// import Character from './Character';
+// import Sprite from './sprite';
+// import Actor from './actor';
+// import Player from './player';
+// import OffCanvas from './performance/offcanvas';
+// import LayerMap from './square/layers';
 import TiledMap from './map/Grid';
-import Stick from './Stick';
-import Music from './Music';
-import PreLoader from './Preloader';
+// import Stick from './Stick';
+// import Music from './Music';
+// import PreLoader from './Preloader';
 import Welcome from './Welcome';
 
 export default function CekOrientation({skin}) {

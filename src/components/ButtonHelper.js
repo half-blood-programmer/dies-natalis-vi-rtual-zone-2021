@@ -1,14 +1,11 @@
 import '../css/ButtonHelper.css';
 import '../css/Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faCamera, faMap, faVolumeUp,  } from '@fortawesome/free-solid-svg-icons';
+import {  faCamera, faMap  } from '@fortawesome/free-solid-svg-icons';
 
 import React from 'react';
-import Popup from 'reactjs-popup';
 
 import Music from './Music';
-import JadwalDisnat from './modal/JadwalDiesnat';
-import { faSpeakerDeck } from '@fortawesome/free-brands-svg-icons';
 import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
 
@@ -66,7 +63,6 @@ function screenshoot() {
           height: "800px",
           padding: "50px 20px 0 20px",
           html: '<img src="'+base64image+'" alt="Red dot" style="width:560px;height:auto;margin:20px 0 20px 0;"/><br> <p style="padding: 0 20px 0 20px">Download hasil screenshoot <a href="'+base64image+'" download="Dienatalis VIrtual Zone">di sini</a> dan bagikan ke insta-story kamu, jangan lupa tag akun @diesnatpknstan ya!</p>',
-          footer:'',
           background:"url('./background-pop-up.png",
           className: "swal-popup",
           // imageHeight: 00,
