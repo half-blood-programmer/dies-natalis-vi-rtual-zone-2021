@@ -1,0 +1,49 @@
+.containerHelper{
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 500px;
+    height: auto;
+    margin: 0px 30px 20px 0;
+    z-index: 99;
+    bottom: 1;
+    right: 0;
+}
+
+.buttonHelper{
+    width: 65px;
+    height: 65px;
+    margin: 10px 5px 0 5px;
+    /* border-radius: 100%; */
+    background: url("../img/assets/bg-button-biru.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    box-shadow: rgba(131, 105, 105, 0.24) 0px 3px 8px;
+}
+
+.icon{
+    color:#fafafa;
+    margin: 15px 0 0 16px;
+    padding: auto;
+}
+
+.iconFaPlay{
+    margin: 10px 0 0 10px;
+    color:#fafafa;
+}
+
+@media only screen and (max-width: 1000px) {
+    .buttonHelper {
+      width: 45px;
+      height: 45px;
+      font-size: 10px;
+    }
+   
+    .icon{
+        color:#fafafa;
+        margin: 12px 13px 0 13px;
+        /* padding: 0px 13px 0 13px; */
+    }
+  }

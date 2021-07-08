@@ -1,0 +1,109 @@
+.containerStick{
+    position: absolute;
+    width: 200px;
+    height: auto;
+    margin: 20px 30px 0px 0px;
+    z-index: 99;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.colStart{
+    width: auto;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background-color: #292d3e; */
+    margin-right: -15px;
+}
+
+.colMiddle{
+    width: auto;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background-color: #fafafa; */
+}
+
+.colEnd{
+    width: auto;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background-color: #292d3e; */
+    margin-left: -15px;
+}
+.buttonStick{
+    width: 65px;
+    height: 65px;
+    margin: 10px 5px 0 5px;
+    border-radius: 100%;
+    background: url("../img/assets/bg-button-biru1.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: rgba(173, 158, 158, 0.24) 0px 3px 8px;
+}
+
+.iconFa{
+    color:#fafafa;
+    margin-top: 15px;
+    padding: 5px 10px 0 10px;
+}
+
+.iconFaPlay{
+    color:#fafafa;
+    margin-top: 15px;
+    padding: 2px 15px 0 15px;
+}
+
+.iconArrow{
+    color:#fafafa;
+    margin-top: 15px;
+    padding: 0px 17px 0 18px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .buttonHelper {
+      width: 45px;
+      height: 45px;
+      font-size: 10px;
+    }
+    .colStart{
+        width: 70px;
+        height: 80px;
+        /* background-color: #292d3e; */
+        margin-right: -30px;
+    }
+    
+    .colMiddle{
+        width: 70px;
+        height: 170px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* background-color: #fafafa; */
+    }
+    
+    .colEnd{
+        width: 70px;
+        height: 150px;
+        /* background-color: #292d3e; */
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    
+    .iconArrow{
+        color:#fafafa;
+        margin-top: 12px;
+        padding: 0px 13px 0 13px;
+    }
+  }

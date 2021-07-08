@@ -1,0 +1,128 @@
+.modal-welcome {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    top: 0;
+    left: 0;
+    width:100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.705);
+    z-index: 9999;
+  }
+
+  .greeting{
+    width: 40%;
+    padding: 30px 0 0 40px;
+  }
+  .image{
+    width: 40%;
+    padding: 5%;
+    text-align: center;
+  }  
+  .image > img{
+    width: 180px;
+    height: auto;
+    margin: auto;
+  }
+  
+  .title-modal{
+    font-family: "Press Start";
+    padding-top:10px;
+    font-size: 28px;
+    color: black;
+  }
+
+  .paragraph{
+    font-size: 14px;
+    margin-top: 20px;
+    padding-left: 4px;
+    color: black;
+  }
+
+  .modal-footer{
+    width: 100%;
+    margin: 20px;
+    padding-left: 20px;
+  }
+
+  .modal-main {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 550px;
+    height: auto;
+    top:50%;
+    left:50%;
+    background: url("../img/assets/bg-pop-up-lands.png") 0 0 no-repeat;
+    background-position: center center;
+    background-size: auto 100%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+  }
+
+  .modal-footer > button {
+    border-radius: 10px;
+    width: 90px;
+    height: 40px;
+    color: #fafafa;
+    border: 0px;
+    background-color: #292d3e;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .display-block {
+    display: block;
+  }
+  
+  .display-none {
+    display: none;
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .title-modal{
+      font-size: 24px;
+    }
+    .greeting{
+      padding-left: 60px;
+    }
+    .modal-footer{
+      padding-left: 40px;
+    }
+  .modal-main {
+    width: 600px;
+    height: auto;
+  }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .title-modal{
+      font-size: 18px;
+    }
+    .paragraph{
+      font-size: 12px;
+    }
+    .greeting{
+      padding-left: 40px;
+    }
+    .modal-footer{
+      padding-left: 20px;
+    }
+    
+    .modal-footer > button{
+      width: 70px;
+      height: 40px;
+      font-size: 12;
+    }
+    .modal-main{
+      width: 400px;
+    }
+    .image > img{
+      width: 90px;
+    }
+  }
+
+  .button-welc{
+    background-color: transparent;
+    border:none;
+  }

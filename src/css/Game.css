@@ -1,0 +1,19 @@
+.main-wrapper {
+	margin: 0;
+	margin: auto;
+}
+.demo {
+	position: absolute;
+	left:0;
+	right:0;
+	top: 0;
+	width: auto;
+	height: 100vh;
+}
+
+.swal-popup{
+	color: #8b8b8b;
+	font-family: "Press Start";
+	font-size: 24px;
+	margin-top: 50px;
+}

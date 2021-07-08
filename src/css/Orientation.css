@@ -1,0 +1,69 @@
+.orientation{
+    margin: 0px;
+    padding: 0px;
+}
+
+.potrait{
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 100vh;
+    margin: auto;
+}
+
+.landscape{
+    visibility: visible;
+    z-index: 999;
+    padding-top: 20px;
+}
+
+@media only screen and (orientation:portrait) {
+    .landscape {
+      visibility: hidden;
+    }
+    .potrait{
+        visibility: visible;
+    }
+  }
+
+  
+.phone {
+    height: 50px;
+    width: 100px;
+    /* margin-top: 30vh; */
+    border: 3px solid white;
+    border-radius: 10px;
+    animation: rotate 1.5s ease-in-out infinite alternate;
+    /* display: none; */
+  }
+  
+  .message {
+    color: white;
+    font-size: 1em;
+    margin-top: 40px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    /* display: none; */
+  }
+  
+  @keyframes rotate {
+    0% {
+          transform: rotate(0deg)
+      }
+      50% {
+          transform: rotate(-90deg)
+      }
+      100% {
+          transform: rotate(-90deg)
+      }
+  }
+  
+  @media only screen and (max-device-width: 812px) and (orientation: landscape) {
+    .phone, .message {
+      display: block;
+    }
+  }
