@@ -178,7 +178,7 @@ var mapTileData = new TileMap();
             width: "600px",
             height: "800px",
             padding: "60px",
-            background:"url('./background-pop-up.png",
+            background:"url('assets/background-pop-up.png",
             className: "swal-popup",
             imageUrl: './map.jpg',
             html:'<iframe width="450" height="315" src="https://www.youtube.com/embed/EVM6LBxBSFg" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen alt="video" style="margin-top:20px;"></iframe>',
