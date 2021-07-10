@@ -1483,7 +1483,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     var istrueUp = false;
     var istrueRight = false;
     var istrueDown = false;
-    var delay = 200; // how much long u have to hold click in MS
+    var delay = 500; // how much long u have to hold click in MS
     var delayLoop = 250;
 
     function holdLeft(e)
