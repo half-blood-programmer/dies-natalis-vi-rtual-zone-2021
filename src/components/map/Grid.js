@@ -924,18 +924,14 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
         return true;
     };
     Character.prototype.canMoveUp = function() { 
-        moving = true;
         return this.canMoveTo(this.tileFrom[0], this.tileFrom[1]-1); 
     };
     Character.prototype.canMoveDown 	= function() { 
-        moving = true;
         return this.canMoveTo(this.tileFrom[0], this.tileFrom[1]+1); 
     };
-    Character.prototype.canMoveLeft 	= function() { 
-        moving = true;
+    Character.prototype.canMoveLeft 	= function() {
         return this.canMoveTo(this.tileFrom[0]-1, this.tileFrom[1]); };
     Character.prototype.canMoveRight 	= function() { 
-        moving = true;
         return this.canMoveTo(this.tileFrom[0]+1, this.tileFrom[1]); };
     Character.prototype.canMoveDirection = function(d) {
         switch(d)
@@ -951,12 +947,18 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
         }
     };
     Character.prototype.moveLeft	= function(t) { 
+        if(player.canMoveLeft()){ moving = true;}
         this.tileTo[0]-=1; this.timeMoved = t; this.direction = directions.left; 
     };
-    Character.prototype.moveRight	= function(t) { this.tileTo[0]+=1; this.timeMoved = t; this.direction = directions.right; };
-    Character.prototype.moveUp		= function(t) { 
+    Character.prototype.moveRight	= function(t) { 
+        if(player.canMoveRight()){ moving = true;}
+        this.tileTo[0]+=1; this.timeMoved = t; this.direction = directions.right; };
+    Character.prototype.moveUp		= function(t) {  
+        if(player.canMoveUp()){ moving = true;}
          this.tileTo[1]-=1; this.timeMoved = t; this.direction = directions.up; };
-    Character.prototype.moveDown	= function(t) { this.tileTo[1]+=1; this.timeMoved = t; this.direction = directions.down; };
+    Character.prototype.moveDown	= function(t) {
+        if(player.canMoveDown()){ moving = true;} 
+        this.tileTo[1]+=1; this.timeMoved = t; this.direction = directions.down; };
     Character.prototype.moveDirection = function(d, t) {
         switch(d)
         {
@@ -1385,7 +1387,6 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
 	
         var sprite = player.sprites[player.direction];
         if(moving){
-            if(player.canMoveUp() | player.canMoveRight() | player.canMoveDown() | player.canMoveLeft()){
             function charaLoopUp(){
                 // for(var j=0;j<3;j++){
                     setTimeout(()=>{
@@ -1434,10 +1435,6 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                     },500) 
                 } 
                 charaLoopUp();
-            }
-            else{
-                moved = 0;
-            }
         }
             else{
                 moved = 0;
@@ -1517,7 +1514,10 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                 if (i < 100 && player.canMoveLeft()) {
                     if(istrueLeft && player.canMoveLeft()){
                         myLoopLeft();   
-                    }           
+                    }
+                    else{
+                        moving = false;
+                    }            
                 }                       
               }, delayLoop)
             }
@@ -1560,7 +1560,10 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                 if (i < timer && player.canMoveUp()) { 
                     if(istrueUp && player.canMoveUp()){
                         myLoopUp();   
-                    }     
+                    }
+                    else{
+                        moving = false;
+                    }      
                 }                       
               }, delayLoop)
             }
@@ -1602,7 +1605,10 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                 if (i < 100 && player.canMoveRight()) { 
                     if(istrueRight && player.canMoveRight()){
                         myLoopRight();   
-                    }     
+                    }
+                    else{
+                        moving = false;
+                    }      
                 }                       
               }, delayLoop)
             }
@@ -1644,6 +1650,9 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                 if (i < 100 && player.canMoveDown()) { 
                     if(istrueDown && player.canMoveDown()){
                         myLoopDown();   
+                    }
+                    else{
+                        moving = false;
                     }     
                 }                       
               }, delayLoop)
