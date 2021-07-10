@@ -1662,20 +1662,20 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     return (
         <div className="main-wrapper"><div className="containerStick">
             <div className="colStart">
-                <div className="buttonStick" onMouseDown={holdLeft} onMouseUp={revertLeft}> 
+                <div className="buttonStick" onMouseDown={holdLeft} onMouseUp={revertLeft} onTouchStart={holdLeft} onTouchEnd={revertLeft}> 
                     <FontAwesomeIcon icon={faArrowLeft} className="iconArrow" size="2x" />
                 </div>              
             </div>
             <div className="colMiddle">
-                <div className="buttonStick"   onMouseDown={holdUp} onMouseUp={revertUp}>
+                <div className="buttonStick"   onMouseDown={holdUp} onMouseUp={revertUp} onTouchStart={holdUp} onTouchEnd={revertUp}>
                     <FontAwesomeIcon icon={faArrowUp} className="iconArrow" size="2x" />
                 </div>
-                <div className="buttonStick"   onMouseDown={holdDown} onMouseUp={revertDown}>
+                <div className="buttonStick"   onMouseDown={holdDown} onMouseUp={revertDown} onTouchStart={holdDown} onTouchEnd={revertDown}>
                     <FontAwesomeIcon icon={faArrowDown} className="iconArrow" size="2x" />
                  </div>
             </div>
             <div className="colEnd">
-                <div className="buttonStick"   onMouseDown={holdRight} onMouseUp={revertRight}>
+                <div className="buttonStick"   onMouseDown={holdRight} onMouseUp={revertRight} onTouchStart={holdRight} onTouchEnd={revertRight}>
                     <FontAwesomeIcon icon={faArrowRight} className="iconArrow" size="2x" />
                  </div>
             </div>       
