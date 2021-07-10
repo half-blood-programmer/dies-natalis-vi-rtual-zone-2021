@@ -16,12 +16,12 @@
     padding: 30px 0 0 40px;
   }
   .image{
-    width: 40%;
+    width: 35%;
     padding: 6%;
-    text-align: right;
+    text-align: center;
   }  
   .image > img{
-    width: 160px;
+    width: 150px;
     height: auto;
     margin: auto;
   }
