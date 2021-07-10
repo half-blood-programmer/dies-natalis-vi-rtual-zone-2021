@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-
+import React, { Component, useEffect, useState } from "react";
+import '../css/Welcome.css';
 import Modal from './Modal';
+import TiledMap from "./map/Grid";
 import Music from "./Music";
 
 function handleChara(){
@@ -26,6 +27,8 @@ class Welcome extends Component  {
       hideModal = () => {
         this.setState({ show: false });
         <Music setplay="true"/>
+        var skin1 = "f1.png";
+        handleChara();
       };
 
     render() {

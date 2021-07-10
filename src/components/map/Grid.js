@@ -1,6 +1,7 @@
-// import {useContext, useEffect} from 'react';
-// import { useState } from "react";
-// import Modal from '../Modal';
+
+
+import "firebase/database";
+import db from './config';
 // import CanvasContext from './canvasContext';
 // import {TILE_SIZE} from './constants';
 
@@ -11,13 +12,6 @@ import '../../css/Stick.css';
 // import '../../css/Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowLeft, faArrowRight, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-// import Sprite from '../sprite';
-// import Header from '../Header';
-
-// import Popup from 'reactjs-popup';
-
-// import JadwalDisnat from '../modal/JadwalDiesnat';
-// import Player from '../player';
 
 export default function TiledMap({skins}){
     var ctx = null;
@@ -34,26 +28,26 @@ export default function TiledMap({skins}){
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 17, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 17, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16, 16, 16, 16, 17, 17, 17, 17, 16, 17, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 17, 17, 17, 17, 17, 17, 16, 16, 16, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16, 10,  2,  2,  2,  2,  2,  2,  2,  7, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 10,  2,  2,  2,  2,  2,  2,  2,  7, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 11, 15, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 16, 16, 16, 16,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15,  5,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  3, 16, 16, 16, 16, 16, 16, 16,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15,  5,  2,  2,  2,  2,  2,  2,  2, 18,  2,  2,  2,  2,  2,  2,  2,  3, 16, 16, 16, 16, 16, 16, 16,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 16, 16, 16, 16,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 16, 16, 16, 16,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 11, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 11, 16, 16, 16,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  5,  2,  2,  2,  4,  2,  2,  2,  4,  2,  6,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  6,  2,  4,  2,  2,  2,  4,  2,  2,  2,  3, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 11, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 11, 15, 15, 15,  5,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  3, 15, 15, 15, 11, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  9,  2,  2,  6,  2,  2,  4,  2,  2,  2,  3, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  5,  2,  2,  2,  4,  2,  2,  6,  2,  2,  8, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16, 16, 16, 16,  1, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  1, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  1, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
-        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  9,  2,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  6,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  2,  8, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 16, 16, 16, 16,  1, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  1, 15, 15, 15, 11, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15,  1, 16, 16, 16, 11, 16, 16, 16,  1, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  5,  2,  2,  2,  4,  2,  2,  2,  4,  2,  6,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  6,  2,  4,  2,  2,  2,  4,  2,  2,  2,  3, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 11, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  1, 15, 15, 15, 15, 15, 11, 15, 15, 15,  5,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  3, 15, 15, 15, 11, 15, 15, 15, 15, 15,  1, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 17,  9,  2,  2,  6,  2,  2,  4,  2,  2,  2,  3, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  5,  2,  2,  2,  4,  2,  2,  6,  2,  2,  8, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0, 16, 16, 16, 16,  1, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15,  1, 17, 17, 16, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  1, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15,  1, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  1, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  1, 15, 15, 15, 15, 15, 15,  1, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
+        0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  9,  2,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  6,  2,  2,  2,  2,  2,  4,  2,  2,  2,  2,  2,  2,  8, 17,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 15,  1, 15,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 15,  1, 15,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
         0,  0,0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 15,  1, 15,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,0,  0,
@@ -79,61 +73,26 @@ var mapTileData = new TileMap();
 
     var tileEvents = {
         //gedung I
-        1686: popUpJadwal,
+        1686: popUpI,
         //gedung J
-        1706: popUpJadwal,
+        1706: popUpJ,
         //gedung P
-        1632: popUpJadwal,
-        //mbm
-        1300: popUpJadwal,
+        1632: popUpP,
+        //G
+        1300: popUpG,
         //lap A
-        1324: popUpJadwal,
+        1324: popUpA,
         //SC
-        1056: popUpJadwal,
+        1056: popUpSC,
         //laparumput
-        1065: alertLapA,
-        1066: alertLapA,
-        1067: alertLapA,
-        1068: alertLapA,
-        1069: alertLapA,
-        1070: alertLapA,
-        1071: alertLapA,
-
-        1129: alertLapA,
-        1130: alertLapA,
-        1131: alertLapA,
-        1132: alertLapA,
-        1133: alertLapA,
-        1134: alertLapA,
-        1135: alertLapA,
-
-        1193: alertLapA,
-        1194: alertLapA,
-        1195: alertLapA,
-        1196: alertLapA,
-        1197: alertLapA,
-        1198: alertLapA,
-        1199: alertLapA,
-        
-        1257: alertLapA,
-        1258: alertLapA,
-        1259: alertLapA,
-        1260: alertLapA,
-        1261: alertLapA,
-        1262: alertLapA,
-        1263: alertLapA,
-
-        1321: alertLapA,
-        1322: alertLapA,
-        1323: alertLapA,
-
-        1325: alertLapA,
-        1326: alertLapA,
-        1327: alertLapA,
+        1065: alertLapA,1066: alertLapA,1067: alertLapA, 1068: alertLapA, 1069: alertLapA,1070: alertLapA, 1071: alertLapA,
+        1129: alertLapA, 1130: alertLapA,1131: alertLapA,1132: alertLapA, 1133: alertLapA, 1134: alertLapA,1135: alertLapA, 1193: alertLapA, 1194: alertLapA,
+        1195: alertLapA,1196: alertLapA,1197: alertLapA,1198: alertLapA, 1199: alertLapA, 1257: alertLapA, 1258: alertLapA,
+        1259: alertLapA,1260: alertLapA, 1261: alertLapA,1262: alertLapA, 1263: alertLapA, 1321: alertLapA,1322: alertLapA, 1323: alertLapA, 1325: alertLapA, 1326: alertLapA, 1327: alertLapA,
         // 22 : drawBridge,
         // 25 : drawBridge,
-        // 141 : function(c) { c.placeAt(1,9); },
-        // 181 : function(c) { c.placeAt(1,7); }
+        919 : function(c) { c.placeAt(48,28); },
+        1201 : function(c) { c.placeAt(21,27); }
     };
     // function drawBridge()
     // {
@@ -169,24 +128,49 @@ var mapTileData = new TileMap();
       })
     }
 
-    function popUpJadwal(){
+    // const gedungi = db.collection('content').doc('gedungi').get('html');
+    var docRefGedungI = db.collection("content").doc("gedungI");
+    var gedungI;
+    var gedungILink;
+    var docRefGedungJ = db.collection("content").doc("gedungJ");
+    var gedungJ;
+    var gedungJLink;
+    var docRefGedungP = db.collection("content").doc("gedungP");
+    var gedungP;
+    var gedungPLink;
+    var docRefGedungG = db.collection("content").doc("gedungG");
+    var gedungG;
+    var gedungGLink;
+    var docRefGedungSC = db.collection("content").doc("gedungSC");
+    var gedungSC;
+    var gedungSCLink;
+    var docRefGedungLapA = db.collection("content").doc("gedungLapA");
+    var gedungLapA;
+    var gedungLapALink;
+
+    docRefGedungI.get().then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+            gedungILink = ""+documentSnapshot.data().link+"";
+            gedungI = ""+documentSnapshot.data().html+"";
+            console.log(gedungI);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    function popUpI(){
         Swal.fire({
-            titleText:"Merchandise DN VI",
-            footer :'<a href="https://portal.pknstan.ac.id/stud/jadkul/kulnow" target="_blank"><button type="button" style=";background-color:blue;border-radius: 10px;width: auto;height: 40px;color: #fafafa;border: 0px;background-color: #292d3e;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">GO TO DN VI YOUTUBE</button></a>',
+            footer :''+gedungILink+'',
             showCloseButton: true,
             showConfirmButton:false,
             width: "600px",
-            height: "800px",
-            padding: "60px",
-            background:"url('assets/background-pop-up.png",
-            className: "swal-popup",
-            imageUrl: './map.jpg',
-            html:'<iframe width="450" height="315" src="https://www.youtube.com/embed/EVM6LBxBSFg" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen alt="video" style="margin-top:20px;"></iframe>',
+            padding: "60px 30px 30px 30px",
+            background:"url('./background-pop-up.png",
+            html: ''+gedungI+'',
             // imageHeight: 00,
             imageAlt: 'A tall image',
-            showClass: {
-              popup: 'animate__animated animate__fadeInUp',
-            },
             backdrop: `
                 rgba(0,0,123,0.4)
                 url("/images/nyan-cat.gif")
@@ -195,13 +179,182 @@ var mapTileData = new TileMap();
             `,
             customClass:{                
               title: 'swal-popup',
-            },
-            hideClass: {
-              popup: 'animate__animated animate__fadeOutUp'
             }
           })
     }
 
+    docRefGedungJ.get().then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+            gedungJLink = ""+documentSnapshot.data().link+"";
+            gedungJ = ""+documentSnapshot.data().html+"";
+            console.log(gedungJ);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    function popUpJ(){
+        Swal.fire({
+            footer : ''+gedungJLink+'',
+            showCloseButton: true,
+            showConfirmButton:false,
+            width: "600px",
+            padding: "60px 30px 30px 30px",
+            background:"url('./background-pop-up.png",
+            html:''+gedungJ+'',
+            imageAlt: 'A tall image',
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/images/nyan-cat.gif")
+                left top
+                no-repeat
+            `,
+            customClass:{                
+              title: 'swal-popup',
+            }
+          })
+    }
+
+    docRefGedungP.get().then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+            gedungPLink = ""+documentSnapshot.data().link+"";
+            gedungP = ""+documentSnapshot.data().html+"";
+            console.log(gedungP);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    function popUpP(){
+        Swal.fire({
+            footer :''+gedungPLink+'',
+            showCloseButton: true,
+            showConfirmButton:false,
+            width: "600px",
+            height: "800px",
+            padding: "60px 30px 30px 30px",
+            background:"url('./background-pop-up.png",
+            html:''+gedungP+'',
+            imageAlt: 'A tall image',
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/images/nyan-cat.gif")
+                left top
+                no-repeat
+            `,
+            customClass:{                
+              title: 'swal-popup',
+            }
+          })
+    }
+
+    docRefGedungG.get().then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+            gedungGLink = ""+documentSnapshot.data().link+"";
+            gedungG = ""+documentSnapshot.data().html+"";
+            console.log(gedungG);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    function popUpG(){
+        Swal.fire({
+            footer :''+gedungGLink+'',
+            showCloseButton: true,
+            showConfirmButton:false,
+            width: "600px",
+            padding: "60px 30px 30px 30px",
+            background:"url('./background-pop-up.png",
+            html:''+gedungG+'',
+            imageAlt: 'A tall image',
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/images/nyan-cat.gif")
+                left top
+                no-repeat
+            `,
+            customClass:{                
+              title: 'swal-popup',
+            }
+          })
+    }
+
+    docRefGedungLapA.get().then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+            gedungLapALink = ""+documentSnapshot.data().link+"";
+            gedungLapA = ""+documentSnapshot.data().html+"";
+            console.log(gedungLapA);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    function popUpA(){
+        Swal.fire({
+            footer :''+gedungLapALink+'',
+            showCloseButton: true,
+            showConfirmButton:false,
+            width: "600px",
+            height: "800px",
+            padding: "60px 30px 30px 30px",
+            background:"url('./background-pop-up.png",
+            html:''+gedungLapA+'',
+            imageAlt: 'A tall image',
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/images/nyan-cat.gif")
+                left top
+                no-repeat
+            `,
+            customClass:{                
+              title: 'swal-popup',
+            }
+          })
+    }
+    
+    docRefGedungSC.get().then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+            gedungSCLink = ""+documentSnapshot.data().link+"";
+            gedungSC = ""+documentSnapshot.data().html+"";
+            console.log(gedungSC);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+    function popUpSC(){
+        Swal.fire({
+            footer :''+gedungSCLink+'',
+            showCloseButton: true,
+            showConfirmButton:false,
+            width: "600px",
+            height: "800px",
+            padding: "60px 30px 30px 30px",
+            background:"url('./background-pop-up.png",
+            html:''+gedungSC+'',
+            imageAlt: 'A tall image',
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/images/nyan-cat.gif")
+                left top
+                no-repeat
+            `,
+            customClass:{                
+              title: 'swal-popup',
+            }
+          })
+    }
     var tileset = null, tilesetURL = "Set-Printilan.png", tilesetLoaded = false;
     var characterset = null, charactersetURL = `${skins}`, charactersetLoaded = false;
     
@@ -248,7 +401,7 @@ var mapTileData = new TileMap();
             else if(this.stacks[i].type == id &&
                 this.stacks[i].qty < itemTypes[id].maxStack)
             {
-                maxHere = (itemTypes[id].maxStack - this.stacks[i].qty);
+                var maxHere = (itemTypes[id].maxStack - this.stacks[i].qty);
                 if(maxHere > qty) { maxHere = qty; }
                 
                 this.stacks[i].qty+= maxHere;
@@ -289,67 +442,229 @@ var objectCollision = {
 var objectTypes = {
 	1 : {
 		name : "Semak Semak",
-		sprite : [{x:280,y:40,w:86,h:65}],
+		sprite : [{x:0,y:195,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 1
 	},
 	2 : {
 		name : "Bunga",
-		sprite : [{x:320,y:40,w:86,h:65}],
+		sprite : [{x:86,y:195,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.none,
 		zIndex : 1
 	},
 	3 : {
 		name : "Gendang",
-		sprite : [{x:360,y:40,w:85,h:85}],
-		offset : [-20,-20],
+		sprite : [{x:172,y:195,w:85,h:65}],
+		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	},
 	4 : {
 		name : "pagar1",
-		sprite : [{x:0,y:80,w:85,h:85}],
+		sprite : [{x:0,y:130,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	},
 	5 : {
 		name : "pagar2",
-		sprite : [{x:40,y:80,w:85,h:85}],
+		sprite : [{x:86,y:130,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	},
 	6 : {
 		name : "pagar3",
-		sprite : [{x:80,y:80,w:85,h:85}],
+		sprite : [{x:172,y:130,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	},
 	7 : {
 		name : "pagar4",
-		sprite : [{x:120,y:80,w:85,h:85}],
+		sprite : [{x:258,y:130,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	10 : {
+		name : "pagar5",
+		sprite : [{x:344,y:130,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	},
 	8 : {
 		name : "lampu1",
-		sprite : [{x:360,y:80,w:85,h:85}],
+		sprite : [{x:344,y:195,w:86,h:65}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	},
 	9 : {
 		name : "lampu2",
-		sprite : [{x:360,y:120,w:85,h:85}],
+		sprite : [{x:344,y:260,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	11 : {
+		name : "pot rumput",
+		sprite : [{x:258,y:195,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	12 : {
+		name : "pot bunga",
+		sprite : [{x:0,y:260,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	13 : {
+		name : "Kucing 1",
+		sprite : [{x:86,y:260,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	14 : {
+		name : "Kucing 2",
+		sprite : [{x:172,y:260,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	15 : {
+		name : "Tempat Sampah",
+		sprite : [{x:258,y:260,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	16 : {
+		name : "Gazebo",
+		sprite : [{x:0,y:325,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	17 : {
+		name : "Gazebo",
+		sprite : [{x:86,y:325,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	18 : {
+		name : "Gazebo",
+		sprite : [{x:0,y:390,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	19 : {
+		name : "Gazebo",
+		sprite : [{x:86,y:390,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	20 : {
+		name : "SC",
+		sprite : [{x:0,y:455,w:430,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	21 : {
+		name : "SC2",
+		sprite : [{x:430,y:585,w:-430,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	22 : {
+		name : "SC3",
+		sprite : [{x:176,y:455,w:258,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	40 : {
+		name : "G",
+		sprite : [{x:430,y:455,w:258,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	41 : {
+		name : "G2",
+		sprite : [{x:430,y:585,w:258,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	52 : {
+		name : "P",
+		sprite : [{x:430,y:0,w:258,h:195}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	61 : {
+		name : "i",
+		sprite : [{x:430,y:195,w:430,h:260}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	62 : {
+		name : "i2",
+		sprite : [{x:603,y:260,w:258,h:195}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	63 : {
+		name : "i3",
+		sprite : [{x:430,y:325,w:430,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	81 : {
+		name : "j",
+		sprite : [{x:688,y:455,w:430,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	82 : {
+		name : "j2",
+		sprite : [{x:688,y:585,w:430,h:130}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	83 : {
+		name : "Swingg",
+		sprite : [{x:344,y:65,w:86,h:65}],
+		offset : [0,0],
+		collision : objectCollision.solid,
+		zIndex : 3
+	},
+	91 : {
+		name : "Air Mancur",
+		sprite : [{x:860,y:0,w:258,h:260}],
 		offset : [0,0],
 		collision : objectCollision.solid,
 		zIndex : 3
 	}
+
 };
 function MapObject(nt)
 {
@@ -416,6 +731,7 @@ MapObject.prototype.placeAt = function(nx, ny)
         15 : { colour:"#5aa457", floor:floorTypes.solid,	sprite:[{x:160,y:40,w:40,h:40}]	},
         16 : { colour:"#5aa457", floor:floorTypes.path,	sprite:[{x:200,y:40,w:40,h:40}]	},
         17 : { colour:"#5aa457", floor:floorTypes.solid,	sprite:[{x:200,y:40,w:40,h:40}]	},
+        18 : { colour:"#685b48", floor:floorTypes.path, sprite:[{x:0,y:80,w:40,h:40}]	},//add path
         20 : { colour:"#fafafa", floor:floorTypes.path,	sprite:[{x:80,y:0,w:40,h:40}]	},
         30 : { colour:"#286625", floor:floorTypes.solid,	sprite:[{x:120,y:0,w:40,h:40}]	},
         40 : { colour:"#678fd9", floor:floorTypes.water,	sprite:[
@@ -514,14 +830,16 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     };
     
     var player = new Character();
+    var moved = 0;
+    var moving = false;
     
     function Character()
     {
         this.tileFrom	= [32,32];
         this.tileTo		= [32,32];
         this.timeMoved	= 0;
-        this.dimensions	= [30,30];
-        this.position	= [2715,  2090];
+        this.dimensions	= [50,50];
+        this.position	= [2705,  2090];
     
         this.delayMove	= {};
         this.delayMove[floorTypes.path]			= 800;
@@ -534,10 +852,10 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     
         this.direction	= directions.up;
         this.sprites = {};
-        this.sprites[directions.up]		= [{x:0,y:96,w:32,h:32,d:200},{x:28,y:96,w:32,h:32,d:200},{x:56,y:96,w:32,h:32,d:200}];
-        this.sprites[directions.right]	= [{x:0,y:64,w:32,h:32,d:200},{x:28,y:64,w:32,h:32,d:200},{x:56,y:64,w:32,h:32,d:200}];
-        this.sprites[directions.down]	= [{x:0,y:0,w:32,h:32,d:200},{x:28,y:0,w:32,h:32,d:200},{x:56,y:0,w:32,h:32,d:200}];
-        this.sprites[directions.left]	= [{x:0,y:32,w:32,h:32,d:200},{x:28,y:32,w:32,h:32,d:200},{x:56,y:32,w:32,h:32,d:200}];
+        this.sprites[directions.up]		= [{x:0,y:150,w:50,h:50,d:200},{x:50,y:150,w:50,h:50,d:200},{x:100,y:150,w:50,h:50,d:200},{x:150,y:150,w:50,h:50,d:200}];
+        this.sprites[directions.right]	= [{x:0,y:100,w:50,h:50,d:200},{x:50,y:100,w:50,h:50,d:200},{x:100,y:100,w:50,h:50,d:200},{x:150,y:100,w:50,h:50,d:200}];
+        this.sprites[directions.down]	= [{x:0,y:0,w:50,h:50,d:200},{x:50,y:0,w:50,h:50,d:200},{x:100,y:0,w:50,h:50,d:200},{x:150,y:0,w:50,h:50,d:200}];
+        this.sprites[directions.left]	= [{x:0,y:50,w:50,h:50,d:200},{x:50,y:50,w:50,h:50,d:200},{x:100,y:50,w:50,h:50,d:200},{x:150,y:50,w:50,h:50,d:200}];
         this.inventory = new Inventory(3);
     }
     Character.prototype.placeAt = function(x, y)
@@ -589,7 +907,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
             }
             if(this.tileTo[1] != this.tileFrom[1])
             {
-                diff = (tileH / moveSpeed) * (t-this.timeMoved);
+                var diff = (tileH / moveSpeed) * (t-this.timeMoved);
                 this.position[1]+= (this.tileTo[1]<this.tileFrom[1] ? 0 - diff : diff);
             }
     
@@ -606,19 +924,19 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
         return true;
     };
     Character.prototype.canMoveUp = function() { 
-        // var j=0;
-        // this.sprites[directions.up]		= [{x:j+=1,y:96,w:32,h:32}];
+        moving = true;
         return this.canMoveTo(this.tileFrom[0], this.tileFrom[1]-1); 
     };
     Character.prototype.canMoveDown 	= function() { 
-        // let text = "";
-        // for (let i = 0; i < this.sprites[directions.down].length; i++) {
-        //     text += this.sprites[directions.down][i] ;
-        // }
+        moving = true;
         return this.canMoveTo(this.tileFrom[0], this.tileFrom[1]+1); 
     };
-    Character.prototype.canMoveLeft 	= function() { return this.canMoveTo(this.tileFrom[0]-1, this.tileFrom[1]); };
-    Character.prototype.canMoveRight 	= function() { return this.canMoveTo(this.tileFrom[0]+1, this.tileFrom[1]); };
+    Character.prototype.canMoveLeft 	= function() { 
+        moving = true;
+        return this.canMoveTo(this.tileFrom[0]-1, this.tileFrom[1]); };
+    Character.prototype.canMoveRight 	= function() { 
+        moving = true;
+        return this.canMoveTo(this.tileFrom[0]+1, this.tileFrom[1]); };
     Character.prototype.canMoveDirection = function(d) {
         switch(d)
         {
@@ -637,44 +955,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     };
     Character.prototype.moveRight	= function(t) { this.tileTo[0]+=1; this.timeMoved = t; this.direction = directions.right; };
     Character.prototype.moveUp		= function(t) { 
-        
-        // charaLoopUp();
-        // function charaLoopUp(){     
-            
-            // var items = [0, 30,  60];
-            // function charaLoopUp(){
-            // // for(var j=0;j<3;j++){
-            //     setTimeout(() => {
-            //     var j =0;
-            //     this.sprites[directions.up]		= [{x:items[j],y:96,w:32,h:32}];    
-            //     j++;                    
-            //     if (j < 3) {
-            //              charaLoopUp(); 
-            //     }      
-            //     },1000) 
-            // } 
-            // charaLoopUp();
-            // var i = 0;
-            // (function loopIt(i) {
-            //   setTimeout(function(){
-            //       // your code handling here
-            //         this.sprites[directions.up]		= [{x:items[i],y:96,w:32,h:32}];  
-            //       console.log(items[i]);
-            //       if(i < items.length - 1){  loopIt(i+1)}
-            //     },  2000);
-            // })(i)
-                // var i=[0,30,60];
-                // for(var j=0;j<3;j++){
-                //     setTimeout(function() {  
-                //     this.sprites[directions.up]		= [{x:i[j],y:96,w:32,h:32}];  
-                //     },100)
-                // }
-       
-        //     }, 100)
-        // }
-        // charaLoopUp();
-
-        this.tileTo[1]-=1; this.timeMoved = t; this.direction = directions.up; };
+         this.tileTo[1]-=1; this.timeMoved = t; this.direction = directions.up; };
     Character.prototype.moveDown	= function(t) { this.tileTo[1]+=1; this.timeMoved = t; this.direction = directions.down; };
     Character.prototype.moveDirection = function(d, t) {
         switch(d)
@@ -744,7 +1025,8 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
             if(e.keyCode>=37 && e.keyCode<=40) { keysDown[e.keyCode] = true; }
         });
         window.addEventListener("keyup", function(e) {
-            if(e.keyCode>=37 && e.keyCode<=40) { keysDown[e.keyCode] = false; }
+            if(e.keyCode>=37 && e.keyCode<=40) {
+                moving = false; keysDown[e.keyCode] = false; }
             if(e.keyCode==83)
             {
                 currentSpeed = (currentSpeed>=(gameSpeeds.length-1) ? 0 : currentSpeed+1);
@@ -798,33 +1080,210 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
 	// mapTileData.addRoofs(roofList);
 	mapTileData.map[((2*mapW)+2)].eventEnter = function()
 		{ console.log("Entered tile 2,2"); };
-	
+	//bunga
 	var mo1 = new MapObject(2); mo1.placeAt(30, 33);
 	var mo2 = new MapObject(2); mo2.placeAt(29, 33);
 	var mo3 = new MapObject(2); mo3.placeAt(34, 33);
-	var mo4 = new MapObject(2); mo4.placeAt(35, 33);
+	var mo3 = new MapObject(2); mo3.placeAt(35, 33);
+	var mo3 = new MapObject(2); mo3.placeAt(47, 28);
+	var mo3 = new MapObject(2); mo3.placeAt(46, 28);
+	var mo3 = new MapObject(2); mo3.placeAt(46, 29);
+	var mo3 = new MapObject(2); mo3.placeAt(45, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(44, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(43, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(42, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(24, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(24, 13);
+	var mo3 = new MapObject(2); mo3.placeAt(24, 12);
+	var mo3 = new MapObject(2); mo3.placeAt(23, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(22, 14);
+	var mo3 = new MapObject(2); mo3.placeAt(15, 20);
+	var mo3 = new MapObject(2); mo3.placeAt(15, 21);
+	var mo3 = new MapObject(2); mo3.placeAt(15, 22);
+	var mo3 = new MapObject(2); mo3.placeAt(14, 32);
+	var mo3 = new MapObject(2); mo3.placeAt(13, 32);
+	var mo3 = new MapObject(2); mo3.placeAt(13, 31);
+	var mo3 = new MapObject(2); mo3.placeAt(49, 31);
+	var mo3 = new MapObject(2); mo3.placeAt(50, 31);
+	var mo3 = new MapObject(2); mo3.placeAt(51, 32);
+    
+	var mo3 = new MapObject(2); mo3.placeAt(10, 22);
+	var mo3 = new MapObject(2); mo3.placeAt(13, 15);
+	var mo3 = new MapObject(2); mo3.placeAt(26, 11);
+	var mo3 = new MapObject(2); mo3.placeAt(30, 11);
+	var mo3 = new MapObject(2); mo3.placeAt(12, 12);
+	var mo3 = new MapObject(2); mo3.placeAt(32, 8);
+	var mo3 = new MapObject(2); mo3.placeAt(45, 11);
+	var mo3 = new MapObject(2); mo3.placeAt(40, 8);
+	var mo3 = new MapObject(2); mo3.placeAt(53, 7);
+	var mo3 = new MapObject(2); mo3.placeAt(52, 25);
+	var mo3 = new MapObject(2); mo3.placeAt(55, 23);
+	var mo3 = new MapObject(2); mo3.placeAt(54, 30);
+    //lampu
+	var mo1 = new MapObject(8); mo1.placeAt(31, 33);
+	var mo2 = new MapObject(9); mo2.placeAt(31, 34);
+	var mo3 = new MapObject(8); mo3.placeAt(33, 33);
+	var mo3 = new MapObject(9); mo3.placeAt(33, 34);
+	var mo1 = new MapObject(8); mo1.placeAt(20, 29);
+	var mo2 = new MapObject(9); mo2.placeAt(20, 30);
+	var mo3 = new MapObject(8); mo3.placeAt(44, 29);
+	var mo3 = new MapObject(9); mo3.placeAt(44, 30);
+	var mo1 = new MapObject(8); mo1.placeAt(27, 24);
+	var mo2 = new MapObject(9); mo2.placeAt(27, 25);
+	var mo3 = new MapObject(8); mo3.placeAt(37, 24);
+	var mo3 = new MapObject(9); mo3.placeAt(37, 25);
+	var mo1 = new MapObject(8); mo1.placeAt(17, 19);
+	var mo2 = new MapObject(9); mo2.placeAt(17, 20);
+    //bendungan
+	var mo4 = new MapObject(3); mo4.placeAt(31, 18);
+	var mo5 = new MapObject(3); mo5.placeAt(31, 19);
+	var mo6 = new MapObject(3); mo6.placeAt(31, 20);
+	var mo4 = new MapObject(3); mo4.placeAt(33, 18);
+	var mo5 = new MapObject(3); mo5.placeAt(33, 19);
+	var mo6 = new MapObject(3); mo6.placeAt(33, 20);
+    //semak
+	var mo3 = new MapObject(1); mo3.placeAt(15, 23);
+	var mo3 = new MapObject(1); mo3.placeAt(15, 24);
+	var mo3 = new MapObject(1); mo3.placeAt(15, 25);
+	var mo3 = new MapObject(1); mo3.placeAt(15, 26);
+	var mo3 = new MapObject(1); mo3.placeAt(15, 27);
+	var mo3 = new MapObject(1); mo3.placeAt(17, 25);
+	var mo3 = new MapObject(1); mo3.placeAt(17, 26);
+	var mo3 = new MapObject(1); mo3.placeAt(19, 14);
+	var mo3 = new MapObject(1); mo3.placeAt(20, 14);
+	var mo3 = new MapObject(1); mo3.placeAt(21, 14);
+	var mo3 = new MapObject(1); mo3.placeAt(25, 12);
+	var mo3 = new MapObject(1); mo3.placeAt(26, 12);
+	var mo3 = new MapObject(1); mo3.placeAt(40, 12);
+	var mo3 = new MapObject(1); mo3.placeAt(40, 13);
+	var mo3 = new MapObject(1); mo3.placeAt(40, 14);
+	var mo3 = new MapObject(1); mo3.placeAt(41, 14);
+	var mo3 = new MapObject(1); mo3.placeAt(39, 22);
+	var mo3 = new MapObject(1); mo3.placeAt(40, 22);
+	var mo3 = new MapObject(1); mo3.placeAt(49, 19);
+	var mo3 = new MapObject(1); mo3.placeAt(49, 20);
+	var mo3 = new MapObject(1); mo3.placeAt(49, 21);
+	var mo3 = new MapObject(1); mo3.placeAt(49, 22);
+	var mo3 = new MapObject(1); mo3.placeAt(46, 31);
+	var mo3 = new MapObject(1); mo3.placeAt(46, 30);
+    
+	var mo3 = new MapObject(1); mo3.placeAt(11, 22);
+	var mo3 = new MapObject(1); mo3.placeAt(12, 14);
+	var mo3 = new MapObject(1); mo3.placeAt(13, 19);
+	var mo3 = new MapObject(1); mo3.placeAt(20, 12);
+	var mo3 = new MapObject(1); mo3.placeAt(52, 18);
+	var mo3 = new MapObject(1); mo3.placeAt(53, 22);
+	var mo3 = new MapObject(1); mo3.placeAt(51, 31);
+	var mo3 = new MapObject(1); mo3.placeAt(52, 30);
+    //tempat sampah
+	var mo3 = new MapObject(15); mo3.placeAt(17, 22);
+	var mo3 = new MapObject(15); mo3.placeAt(43, 30);
+    //pot rumput
+	var mo3 = new MapObject(11); mo3.placeAt(20, 26);
+	var mo3 = new MapObject(11); mo3.placeAt(21, 26);
+	var mo3 = new MapObject(11); mo3.placeAt(19, 20);
+	var mo3 = new MapObject(11); mo3.placeAt(21, 20);
+	var mo3 = new MapObject(11); mo3.placeAt(25, 18);
+	var mo3 = new MapObject(11); mo3.placeAt(28, 25);
+	var mo3 = new MapObject(11); mo3.placeAt(29, 25);
+	var mo3 = new MapObject(11); mo3.placeAt(35, 25);
+	var mo3 = new MapObject(11); mo3.placeAt(36, 25);
+	var mo3 = new MapObject(11); mo3.placeAt(31, 16);
+	var mo3 = new MapObject(11); mo3.placeAt(34, 16);
+    //pot bunga
+	var mo3 = new MapObject(12); mo3.placeAt(30, 16);
+	var mo3 = new MapObject(12); mo3.placeAt(29, 16);
+	var mo3 = new MapObject(12); mo3.placeAt(33, 16);
+	var mo3 = new MapObject(12); mo3.placeAt(35, 16);
+	var mo3 = new MapObject(12); mo3.placeAt(39, 18);
+	var mo3 = new MapObject(12); mo3.placeAt(45, 26);
+	var mo3 = new MapObject(12); mo3.placeAt(44, 26);
+    //kucing
+	var mo3 = new MapObject(13); mo3.placeAt(27, 13);
+	var mo3 = new MapObject(14); mo3.placeAt(35, 18);
+	var mo3 = new MapObject(13); mo3.placeAt(21, 28);
+    //gazebo
+	var mo3 = new MapObject(16); mo3.placeAt(24, 29);
+	var mo3 = new MapObject(17); mo3.placeAt(25, 29);
+	var mo3 = new MapObject(18); mo3.placeAt(24, 30);
+	var mo3 = new MapObject(19); mo3.placeAt(25, 30);
+	var mo3 = new MapObject(16); mo3.placeAt(39, 29);
+	var mo3 = new MapObject(17); mo3.placeAt(40, 29);
+	var mo3 = new MapObject(18); mo3.placeAt(39, 30);
+	var mo3 = new MapObject(19); mo3.placeAt(40, 30);
+    //pagar1
+	var mo3 = new MapObject(4); mo3.placeAt(18, 32);
+	var mo3 = new MapObject(4); mo3.placeAt(14, 29);
+	var mo3 = new MapObject(4); mo3.placeAt(41, 13);
+	var mo3 = new MapObject(4); mo3.placeAt(14, 13);
+	var mo3 = new MapObject(4); mo3.placeAt(23, 11);
+	var mo3 = new MapObject(4); mo3.placeAt(47, 29);
+    //pagar2
+	var mo3 = new MapObject(5); mo3.placeAt(18, 31);
+	var mo3 = new MapObject(5); mo3.placeAt(18, 30);
+	var mo3 = new MapObject(5); mo3.placeAt(47, 31);
+	var mo3 = new MapObject(5); mo3.placeAt(47, 30);
+	var mo3 = new MapObject(5); mo3.placeAt(23, 12);
+	var mo3 = new MapObject(5); mo3.placeAt(41, 12);
+    //swing
+	var mo3 = new MapObject(83); mo3.placeAt(23, 14);
+	var mo3 = new MapObject(83); mo3.placeAt(49, 18);
+	var mo3 = new MapObject(83); mo3.placeAt(40, 13);
+    //pagar4
+	var mo3 = new MapObject(7); mo3.placeAt(18, 29);
+	var mo3 = new MapObject(7); mo3.placeAt(23, 13);
+	var mo3 = new MapObject(7); mo3.placeAt(41, 11);
+	var mo3 = new MapObject(7); mo3.placeAt(50, 13);
+	var mo3 = new MapObject(7); mo3.placeAt(50, 29);
+	var mo3 = new MapObject(7); mo3.placeAt(47, 32);
+    for(var p3=14;p3<=28;p3++){
+        var mo3 = new MapObject(5); mo3.placeAt(14, p3);
+    }
+    for(var p3=14;p3<=28;p3++){
+        var mo3 = new MapObject(5); mo3.placeAt(50, p3);
+    }
+    //pagar5
+    for(var p5=19;p5<=30;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 32);
+    }
+    for(var p5=34;p5<=46;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 32);
+    }
+    for(var p5=15;p5<=22;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 13);
+    }
+    for(var p5=42;p5<=49;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 13);
+    }
+    for(var p5=15;p5<=17;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 29);
+    }
+    for(var p5=48;p5<=49;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 29);
+    }
+    for(var p5=24;p5<=40;p5++){
+        var mo3 = new MapObject(10); mo3.placeAt(p5, 11);
+    }
 
-	var mo5 = new MapObject(8); mo5.placeAt(31, 33);
-	var mo6 = new MapObject(9); mo6.placeAt(31, 34);
-	var mo7 = new MapObject(8); mo7.placeAt(33, 33);
-	var mo8 = new MapObject(9); mo8.placeAt(33, 34);
+    //SC
+    var mo3 = new MapObject(20); mo3.placeAt(30, 12);
+    var mo3 = new MapObject(21); mo3.placeAt(35, 14);
+    var mo3 = new MapObject(22); mo3.placeAt(32, 12);
+    //G
+    var mo3 = new MapObject(40); mo3.placeAt(19, 16);
+    var mo3 = new MapObject(41); mo3.placeAt(19, 18);
+	//P
+    var mo3 = new MapObject(52); mo3.placeAt(31, 22);
+    //i
+    var mo3 = new MapObject(61); mo3.placeAt(19, 22);
+    var mo3 = new MapObject(62); mo3.placeAt(21, 23);
+    var mo3 = new MapObject(63); mo3.placeAt(19, 24);
+    //j
+    var mo3 = new MapObject(81); mo3.placeAt(41, 22);
+    var mo3 = new MapObject(82); mo3.placeAt(41, 24);
+    //airmancur
+    var mo3 = new MapObject(91); mo3.placeAt(31, 27);
 
-	var mo9 = new MapObject(4); mo9.placeAt(30, 32);
-	var mo10 = new MapObject(4); mo10.placeAt(29, 32);
-	var mo11 = new MapObject(4); mo11.placeAt(28, 32);
-	var mo12 = new MapObject(4); mo12.laceAt(27, 32);
-	
-	var mo19 = new MapObject(1); mo19.placeAt(24, 25);
-	var mo20 = new MapObject(2); mo20.placeAt(27, 25);
-	
-	var mo13 = new MapObject(3); mo13.placeAt(25, 21);
-	var mo14 = new MapObject(3); mo14.placeAt(23, 22);
-	var mo15 = new MapObject(3); mo15.placeAt(21, 23);
-	
-	var mo16 = new MapObject(3); mo16.placeAt(21, 21);
-	var mo17 = new MapObject(3); mo17.placeAt(25, 25);
-	var mo18 = new MapObject(3); mo18.placeAt(22, 26);
-	
 	for(var i = 3; i < 8; i++)
 	{
 		var ps = new PlacedItemStack(1, 1); ps.placeAt(i, 1);
@@ -924,26 +1383,69 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
 	}
 	
 	
-        sprite = player.sprites[player.direction];
-        // var j =1;
-        // ctx.drawImage(characterset,
-        //     sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h,
-        //     viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
-        //     player.dimensions[0], player.dimensions[1]);  
-        //     ctx.drawImage(characterset,
-        //         sprite[1].x, sprite[1].y, sprite[0].w, sprite[0].h,
-        //         viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
-        //         player.dimensions[0], player.dimensions[1]);  
+        var sprite = player.sprites[player.direction];
+        if(moving){
+            if(player.canMoveUp() | player.canMoveRight() | player.canMoveDown() | player.canMoveLeft()){
+            function charaLoopUp(){
+                // for(var j=0;j<3;j++){
+                    setTimeout(()=>{
+                    var j =0;                            
+                        moved = 1;
+                    j++;                    
+                    if (j <= 50) {
+                        charaLoopUp2(); 
+                        function charaLoopUp2(){
+                            // for(var j=0;j<3;j++){
+                                setTimeout(()=>{
+                                var j =0;                            
+                                moved = 0;
+                                j++;                    
+                                if (j <= 50) {
+                                    charaLoopUp3();
+                                    function charaLoopUp3(){
+                                        // for(var j=0;j<3;j++){
+                                            setTimeout(()=>{
+                                            var j =0;                            
+                                            moved = 2;
+                                            j++;                    
+                                            if (j <= 50) {
+                                                charaLoopUp4();
+                                                function charaLoopUp4(){
+                                                    // for(var j=0;j<3;j++){
+                                                        setTimeout(()=>{
+                                                        var j =0;                            
+                                                        moved = 3;
+                                                        j++;                    
+                                                        if (j <= 50) {
+                                                            charaLoopUp();
+                                                             
+                                                        }      
+                                                        },500) 
+                                                    } 
+                                                 
+                                            }      
+                                            },500) 
+                                        } 
 
-        // var myArray = [1,0,2,1,0,2,1,0,1,0];
-        // var charaloop = setTimeout.call(myArray, myArray.myMethod,  2000);
-
-        for(var j=0;j<3;j++){
+                                }      
+                                },500) 
+                            } 
+                    }      
+                    },500) 
+                } 
+                charaLoopUp();
+            }
+            else{
+                moved = 0;
+            }
+        }
+            else{
+                moved = 0;
+            }
             ctx.drawImage(characterset,
-                sprite[j].x, sprite[j].y, sprite[0].w, sprite[0].h,
+                sprite[moved].x, sprite[moved].y, sprite[0].w, sprite[0].h,
                 viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
                 player.dimensions[0], player.dimensions[1]);
-        }
 
         // function charaLoopUp(){
         //     // for(var j=0;j<3;j++){
@@ -985,7 +1487,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     var istrueRight = false;
     var istrueDown = false;
     var delay = 200; // how much long u have to hold click in MS
-    var delayLoop = 200;
+    var delayLoop = 250;
 
     function holdLeft(e)
     {
@@ -1025,6 +1527,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     function revertLeft()
     {
         istrueLeft =false;
+        moving = false;
     }
 
 
@@ -1054,7 +1557,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                 
                 buttonUp();    
                 i++;                    
-                if (i < 100 && player.canMoveUp()) { 
+                if (i < timer && player.canMoveUp()) { 
                     if(istrueUp && player.canMoveUp()){
                         myLoopUp();   
                     }     
@@ -1067,6 +1570,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     function revertUp()
     {
         istrueUp =false;
+        moving = false;
     }
 
 
@@ -1108,6 +1612,7 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     function revertRight()
     {
         istrueRight =false;
+        moving = false;
     }
 
 
@@ -1149,26 +1654,10 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     function revertDown()
     {
         istrueDown =false;
+        moving = false;
     }
 
 
-    // function dblClickLeft()
-    // {
-    //     if(player.canMoveLeft())			{ player.moveLeft(gameTime); }
-    // }
-    // function dblClickUp()
-    // {
-    //     if(player.canMoveUp())			{ player.moveUp(gameTime); }
-    // }
-    // function dblClickRight()
-    // {
-    //     if(player.canMoveRight())			{ player.moveRight(gameTime); }
-    // }
-    // function dblClickDown()
-    // {
-    //     if(player.canMoveDown())			{ player.moveDown(gameTime); }
-    // }
-    
 
     return (
         <div className="main-wrapper"><div className="containerStick">

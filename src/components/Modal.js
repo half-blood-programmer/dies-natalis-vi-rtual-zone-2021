@@ -1,11 +1,27 @@
 import '../css/Welcome.css';
-import React from "react";
+import React, { Component, useEffect, useState } from "react";
 import Logo from '../img/logodnfinal.png';
 
+import SideNav from './SideNav';
+import Header from './Header';
+import ButtonHelper from './ButtonHelper';
+import Footer from './Footer';
+import Character from './Character';
+import Sprite from './sprite';
+import Actor from './actor';
+import Player from './player';
+import OffCanvas from './performance/offcanvas';
+import LayerMap from './square/layers';
+import TiledMap from './map/Grid';
+import Stick from './Stick';
+import Music from './Music';
+import PreLoader from './Preloader';
+import Welcome from './Welcome';
 
 const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal-welcome display-block" : "modal-welcome display-none";
 
+  var skin ="f1.png";
   
   function handleSkin1(){
     handleClose();
@@ -47,7 +63,7 @@ const Modal = ({ handleClose, show, children }) => {
             Hai Stanners!
           </div>
           <div className="paragraph">
-            bla bla blaa blaa halan halan
+            Welcome to Dies Natalis VIrtual Zone, Come on explore !
           </div>
         </div>
         <div className="image">
@@ -55,7 +71,7 @@ const Modal = ({ handleClose, show, children }) => {
         </div>
         <div className="modal-footer">
         <button type="button" onClick={handleSkin1}>
-          Gasss
+          Go
         </button>
         </div>
       </section>

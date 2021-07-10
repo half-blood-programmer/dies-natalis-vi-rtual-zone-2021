@@ -38,7 +38,7 @@ const Music = playornot  => {
       
         {playing ? <FontAwesomeIcon icon={faVolumeUp} className="icon" size="2x" /> 
         : 
-        <FontAwesomeIcon icon={faVolumeMute} className="icon" size="2x" />}
+        <FontAwesomeIcon icon={faVolumeMute} className="icon ahashakeheartache" size="2x" />}
     </div>
   );
 };
