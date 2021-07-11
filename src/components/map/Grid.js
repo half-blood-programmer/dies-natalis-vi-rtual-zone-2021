@@ -4,7 +4,6 @@ import "firebase/database";
 import db from './config';
 // import CanvasContext from './canvasContext';
 // import {TILE_SIZE} from './constants';
-import TwitterTimeline from 'react-twitter-embedded-timeline';
 import { Timeline } from 'react-twitter-widgets';
 import React from 'react';
 import '../../css/Game.css';
