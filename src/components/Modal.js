@@ -18,36 +18,41 @@ import Music from './Music';
 import PreLoader from './Preloader';
 import Welcome from './Welcome';
 
+
+
+// var setSkin =1;
+
+// function setSkin2(){
+//   setSkin == 2;
+// }
+
+// export function changeSkin1(){
+//   if(setSkin == 1){
+//     var skinsss = "did-kun.png";
+//     return {skinsss};
+//   }
+//   if(setSkin == 2){
+//     var skinsss = "f1.png";
+//     return {skinsss};
+//   }
+//   if(setSkin == 3){
+//     var skinsss = "f2.png";
+//     return {skinsss};
+//   }
+// }
+
 const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal-welcome display-block" : "modal-welcome display-none";
 
-  var skin ="f1.png";
+  var skinsss ="f1.png";
   
+
+
+
+
   function handleSkin1(){
     handleClose();
-    // audio.play();
-    // const useAudio = playornot => {
-    //   const [audio] = useState(new Audio('./audio/music.mp3'));
-    //   const [playing, setPlaying] = useState(true);
-    
-    //   const toggle = () => setPlaying(!playing);
-    
-    //   useEffect(() => {
-    //       playing ? audio.play() : audio.pause();
-    //     },
-    //     [playing]
-    //   );
-    
-    //   useEffect(() => {
-    //     audio.addEventListener('ended', () => audio.play());
-    //     return () => {
-    //       audio.removeEventListener('ended', () => audio.play());
-    //     };
-    //   }, []);
-    
-    //   return [playing, toggle];
-    // };
-    // <Game skin="f2.png"/>  
+    // setSkin2();
   }
 
   return (

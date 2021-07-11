@@ -4,7 +4,8 @@ import "firebase/database";
 import db from './config';
 // import CanvasContext from './canvasContext';
 // import {TILE_SIZE} from './constants';
-
+import TwitterTimeline from 'react-twitter-embedded-timeline';
+import { Timeline } from 'react-twitter-widgets';
 import React from 'react';
 import '../../css/Game.css';
 import Swal from 'sweetalert2';
@@ -12,6 +13,7 @@ import '../../css/Stick.css';
 // import '../../css/Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowLeft, faArrowRight, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+// import "https://platform.twitter.com/widgets.js";
 
 export default function TiledMap({skins}){
     var ctx = null;
@@ -85,10 +87,10 @@ var mapTileData = new TileMap();
         //SC
         1056: popUpSC,
         //laparumput
-        1065: alertLapA,1066: alertLapA,1067: alertLapA, 1068: alertLapA, 1069: alertLapA,1070: alertLapA, 1071: alertLapA,
-        1129: alertLapA, 1130: alertLapA,1131: alertLapA,1132: alertLapA, 1133: alertLapA, 1134: alertLapA,1135: alertLapA, 1193: alertLapA, 1194: alertLapA,
+        1065: alertLapA,1066: alertLapA,1067: alertLapA,1068: alertLapA, 1069: alertLapA, 1070: alertLapA, 1071: alertLapA,
+        1129: alertLapA,1130: alertLapA,1131: alertLapA,1132: alertLapA, 1133: alertLapA, 1134: alertLapA, 1135: alertLapA, 1193: alertLapA, 1194: alertLapA,
         1195: alertLapA,1196: alertLapA,1197: alertLapA,1198: alertLapA, 1199: alertLapA, 1257: alertLapA, 1258: alertLapA,
-        1259: alertLapA,1260: alertLapA, 1261: alertLapA,1262: alertLapA, 1263: alertLapA, 1321: alertLapA,1322: alertLapA, 1323: alertLapA, 1325: alertLapA, 1326: alertLapA, 1327: alertLapA,
+        1259: alertLapA,1260: alertLapA,1261: alertLapA,1262: alertLapA, 1263: alertLapA, 1321: alertLapA, 1322: alertLapA, 1323: alertLapA, 1325: alertLapA, 1326: alertLapA, 1327: alertLapA,
         // 22 : drawBridge,
         // 25 : drawBridge,
         919 : function(c) { c.placeAt(48,28); },
@@ -130,28 +132,38 @@ var mapTileData = new TileMap();
 
     // const gedungi = db.collection('content').doc('gedungi').get('html');
     var docRefGedungI = db.collection("content").doc("gedungI");
-    var gedungI;
+    var gedungI, gedungIcontent1, gedungIcontent2, gedungIcontent3, gedungIcontent4, gedungIcontent5, gedungIcontent6, gedungIcontent7, gedungIcontent8, gedungIcontent9, gedungIcontent10;
     var gedungILink;
     var docRefGedungJ = db.collection("content").doc("gedungJ");
-    var gedungJ;
+    var gedungJ, gedungJcontent1, gedungJcontent2, gedungJcontent3, gedungJcontent4, gedungJcontent5, gedungJcontent6, gedungJcontent7, gedungJcontent8, gedungJcontent9, gedungJcontent10;
     var gedungJLink;
     var docRefGedungP = db.collection("content").doc("gedungP");
     var gedungP;
     var gedungPLink;
     var docRefGedungG = db.collection("content").doc("gedungG");
-    var gedungG;
+    var gedungG, gedungGcontent1, gedungGcontent2, gedungGcontent3, gedungGcontent4, gedungGcontent5, gedungGcontent6, gedungGcontent7, gedungGcontent8, gedungGcontent9, gedungGcontent10;
     var gedungGLink;
     var docRefGedungSC = db.collection("content").doc("gedungSC");
     var gedungSC;
     var gedungSCLink;
     var docRefGedungLapA = db.collection("content").doc("gedungLapA");
-    var gedungLapA;
+    var gedungLapA, gedungLapAcontent1, gedungLapAcontent2, gedungLapAcontent3, gedungLapAcontent4, gedungLapAcontent5, gedungLapAcontent6, gedungLapAcontent7, gedungLapAcontent8, gedungLapAcontent9, gedungLapAcontent10;
     var gedungLapALink;
 
     docRefGedungI.get().then(documentSnapshot => {
         if (documentSnapshot.exists) {
             gedungILink = ""+documentSnapshot.data().link+"";
             gedungI = ""+documentSnapshot.data().html+"";
+            gedungIcontent1 = ""+documentSnapshot.data().content1+"";
+            gedungIcontent2 = ""+documentSnapshot.data().content2+"";
+            gedungIcontent3 = ""+documentSnapshot.data().content3+"";
+            gedungIcontent4 = ""+documentSnapshot.data().content4+"";
+            gedungIcontent5 = ""+documentSnapshot.data().content5+"";
+            gedungIcontent6 = ""+documentSnapshot.data().content6+"";
+            gedungIcontent7 = ""+documentSnapshot.data().content7+"";
+            gedungIcontent8 = ""+documentSnapshot.data().content8+"";
+            gedungIcontent9 = ""+documentSnapshot.data().content9+"";
+            gedungIcontent10 = ""+documentSnapshot.data().content10+"";
             console.log(gedungI);
         } else {
             // doc.data() will be undefined in this case
@@ -165,11 +177,11 @@ var mapTileData = new TileMap();
             footer :''+gedungILink+'',
             showCloseButton: true,
             showConfirmButton:false,
-            width: "600px",
+            width: "700px",
             padding: "60px 30px 30px 30px",
             background:"url('./background-pop-up.png",
-            html: ''+gedungI+'',
-            // imageHeight: 00,
+            // html: ''+gedungI+'',
+            html: ''+gedungI+gedungIcontent10+gedungIcontent9+gedungIcontent8+gedungIcontent7+gedungIcontent6+gedungIcontent5+gedungIcontent4+gedungIcontent3+gedungIcontent2+gedungIcontent1+'</div>',
             imageAlt: 'A tall image',
             backdrop: `
                 rgba(0,0,123,0.4)
@@ -187,6 +199,16 @@ var mapTileData = new TileMap();
         if (documentSnapshot.exists) {
             gedungJLink = ""+documentSnapshot.data().link+"";
             gedungJ = ""+documentSnapshot.data().html+"";
+            gedungJcontent1 = ""+documentSnapshot.data().content1+"";
+            gedungJcontent2 = ""+documentSnapshot.data().content2+"";
+            gedungJcontent3 = ""+documentSnapshot.data().content3+"";
+            gedungJcontent4 = ""+documentSnapshot.data().content4+"";
+            gedungJcontent5 = ""+documentSnapshot.data().content5+"";
+            gedungJcontent6 = ""+documentSnapshot.data().content6+"";
+            gedungJcontent7 = ""+documentSnapshot.data().content7+"";
+            gedungJcontent8 = ""+documentSnapshot.data().content8+"";
+            gedungJcontent9 = ""+documentSnapshot.data().content9+"";
+            gedungJcontent10 = ""+documentSnapshot.data().content10+"";
             console.log(gedungJ);
         } else {
             // doc.data() will be undefined in this case
@@ -200,10 +222,10 @@ var mapTileData = new TileMap();
             footer : ''+gedungJLink+'',
             showCloseButton: true,
             showConfirmButton:false,
-            width: "600px",
+            width: "700px",
             padding: "60px 30px 30px 30px",
             background:"url('./background-pop-up.png",
-            html:''+gedungJ+'',
+            html:''+gedungJ+gedungJcontent10+gedungJcontent9+gedungJcontent8+gedungJcontent7+gedungJcontent6+gedungJcontent5+gedungJcontent4+gedungJcontent3+gedungJcontent2+gedungJcontent1+'</div>',
             imageAlt: 'A tall image',
             backdrop: `
                 rgba(0,0,123,0.4)
@@ -230,32 +252,23 @@ var mapTileData = new TileMap();
         console.log("Error getting document:", error);
     });
     function popUpP(){
-        Swal.fire({
-            footer :''+gedungPLink+'',
-            showCloseButton: true,
-            showConfirmButton:false,
-            width: "600px",
-            height: "800px",
-            padding: "60px 30px 30px 30px",
-            background:"url('./background-pop-up.png",
-            html:''+gedungP+'',
-            imageAlt: 'A tall image',
-            backdrop: `
-                rgba(0,0,123,0.4)
-                url("/images/nyan-cat.gif")
-                left top
-                no-repeat
-            `,
-            customClass:{                
-              title: 'swal-popup',
-            }
-          })
+        showTweet();
     }
 
     docRefGedungG.get().then(documentSnapshot => {
         if (documentSnapshot.exists) {
             gedungGLink = ""+documentSnapshot.data().link+"";
             gedungG = ""+documentSnapshot.data().html+"";
+            gedungGcontent1 = ""+documentSnapshot.data().content1+"";
+            gedungGcontent2 = ""+documentSnapshot.data().content2+"";
+            gedungGcontent3 = ""+documentSnapshot.data().content3+"";
+            gedungGcontent4 = ""+documentSnapshot.data().content4+"";
+            gedungGcontent5 = ""+documentSnapshot.data().content5+"";
+            gedungGcontent6 = ""+documentSnapshot.data().content6+"";
+            gedungGcontent7 = ""+documentSnapshot.data().content7+"";
+            gedungGcontent8 = ""+documentSnapshot.data().content8+"";
+            gedungGcontent9 = ""+documentSnapshot.data().content9+"";
+            gedungGcontent10 = ""+documentSnapshot.data().content10+"";
             console.log(gedungG);
         } else {
             // doc.data() will be undefined in this case
@@ -269,10 +282,10 @@ var mapTileData = new TileMap();
             footer :''+gedungGLink+'',
             showCloseButton: true,
             showConfirmButton:false,
-            width: "600px",
+            width: "700px",
             padding: "60px 30px 30px 30px",
             background:"url('./background-pop-up.png",
-            html:''+gedungG+'',
+            html:''+gedungG+gedungGcontent10+gedungGcontent9+gedungGcontent8+gedungGcontent7+gedungGcontent6+gedungGcontent5+gedungGcontent4+gedungGcontent3+gedungGcontent2+gedungGcontent1+'</div>',
             imageAlt: 'A tall image',
             backdrop: `
                 rgba(0,0,123,0.4)
@@ -290,6 +303,16 @@ var mapTileData = new TileMap();
         if (documentSnapshot.exists) {
             gedungLapALink = ""+documentSnapshot.data().link+"";
             gedungLapA = ""+documentSnapshot.data().html+"";
+            gedungLapAcontent1 = ""+documentSnapshot.data().content1+"";
+            gedungLapAcontent2 = ""+documentSnapshot.data().content2+"";
+            gedungLapAcontent3 = ""+documentSnapshot.data().content3+"";
+            gedungLapAcontent4 = ""+documentSnapshot.data().content4+"";
+            gedungLapAcontent5 = ""+documentSnapshot.data().content5+"";
+            gedungLapAcontent6 = ""+documentSnapshot.data().content6+"";
+            gedungLapAcontent7 = ""+documentSnapshot.data().content7+"";
+            gedungLapAcontent8 = ""+documentSnapshot.data().content8+"";
+            gedungLapAcontent9 = ""+documentSnapshot.data().content9+"";
+            gedungLapAcontent10 = ""+documentSnapshot.data().content10+"";
             console.log(gedungLapA);
         } else {
             // doc.data() will be undefined in this case
@@ -303,11 +326,11 @@ var mapTileData = new TileMap();
             footer :''+gedungLapALink+'',
             showCloseButton: true,
             showConfirmButton:false,
-            width: "600px",
+            width: "700px",
             height: "800px",
             padding: "60px 30px 30px 30px",
             background:"url('./background-pop-up.png",
-            html:''+gedungLapA+'',
+            html:''+gedungLapA+gedungLapAcontent10+gedungLapAcontent9+gedungLapAcontent8+gedungLapAcontent7+gedungLapAcontent6+gedungLapAcontent5+gedungLapAcontent4+gedungLapAcontent3+gedungLapAcontent2+gedungLapAcontent1+'</div>',
             imageAlt: 'A tall image',
             backdrop: `
                 rgba(0,0,123,0.4)
@@ -338,7 +361,7 @@ var mapTileData = new TileMap();
             footer :''+gedungSCLink+'',
             showCloseButton: true,
             showConfirmButton:false,
-            width: "600px",
+            width: "700px",
             height: "800px",
             padding: "60px 30px 30px 30px",
             background:"url('./background-pop-up.png",
@@ -355,8 +378,9 @@ var mapTileData = new TileMap();
             }
           })
     }
+
     var tileset = null, tilesetURL = "Set-Printilan.png", tilesetLoaded = false;
-    var characterset = null, charactersetURL = `${skins}`, charactersetLoaded = false;
+    var characterset = null, charactersetURL = "chara.png", charactersetLoaded = false;
     
     var gameTime = 0;
     var gameSpeeds = [
@@ -1388,7 +1412,6 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
         var sprite = player.sprites[player.direction];
         if(moving){
             function charaLoopUp(){
-                // for(var j=0;j<3;j++){
                     setTimeout(()=>{
                     var j =0;                            
                         moved = 1;
@@ -1396,7 +1419,6 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                     if (j <= 50) {
                         charaLoopUp2(); 
                         function charaLoopUp2(){
-                            // for(var j=0;j<3;j++){
                                 setTimeout(()=>{
                                 var j =0;                            
                                 moved = 0;
@@ -1404,7 +1426,6 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                                 if (j <= 50) {
                                     charaLoopUp3();
                                     function charaLoopUp3(){
-                                        // for(var j=0;j<3;j++){
                                             setTimeout(()=>{
                                             var j =0;                            
                                             moved = 2;
@@ -1412,7 +1433,6 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                                             if (j <= 50) {
                                                 charaLoopUp4();
                                                 function charaLoopUp4(){
-                                                    // for(var j=0;j<3;j++){
                                                         setTimeout(()=>{
                                                         var j =0;                            
                                                         moved = 3;
@@ -1436,46 +1456,16 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
                 } 
                 charaLoopUp();
         }
-            else{
+        else{
                 moved = 0;
-            }
-            ctx.drawImage(characterset,
+        }
+        ctx.drawImage(characterset,
                 sprite[moved].x, sprite[moved].y, sprite[0].w, sprite[0].h,
                 viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
                 player.dimensions[0], player.dimensions[1]);
-
-        // function charaLoopUp(){
-        //     // for(var j=0;j<3;j++){
-        //         setTimeout(()=>{
-        //         var j =0;
-                   
-        //         j++;                    
-        //         if (j < 2) {
-        //             charaLoopUp(); 
-        //         }      
-        //         },500) 
-        //     } 
-        //     charaLoopUp();
-        
             
         lastFrameTime = currentFrameTime;
         requestAnimationFrame(drawGame);
-    };
-
-    function buttonUp(){
-        if(player.canMoveUp())			{ player.moveUp(gameTime); }
-    };
-
-    function buttonRight(){
-        if(player.canMoveRight())			{ player.moveRight(gameTime); }
-    };
-
-    function buttonDown(){
-        if(player.canMoveDown())			{ player.moveDown(gameTime); }
-    };
-
-    function buttonLeft(){
-        if(player.canMoveLeft())			{ player.moveLeft(gameTime); }
     };
 
     var timer;
@@ -1483,8 +1473,8 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     var istrueUp = false;
     var istrueRight = false;
     var istrueDown = false;
-    var delay = 500; // how much long u have to hold click in MS
-    var delayLoop = 250;
+    var delay = 230; // how much long u have to hold click in MS
+    var delayLoop = 230;
 
     function holdLeft(e)
     {
@@ -1507,11 +1497,12 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
         {
             var i = 1;
             function myLoopLeft(){
-            setTimeout(function() {   
-                
-                buttonLeft();    
-                i++;                    
-                if (i < 100 && player.canMoveLeft()) {
+            setTimeout(function() {  
+                if(player.canMoveLeft()){
+                    player.moveLeft(gameTime); 
+                    i++;                    
+                }
+                if (i < 40) {
                     if(istrueLeft && player.canMoveLeft()){
                         myLoopLeft();   
                     }
@@ -1554,10 +1545,11 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
             var i = 1;
             function myLoopUp(){
             setTimeout(function() {   
-                
-                buttonUp();    
-                i++;                    
-                if (i < timer && player.canMoveUp()) { 
+                if(player.canMoveUp()){
+                    player.moveUp(gameTime);                
+                }  
+                i++;   
+                if (i < 40 && player.canMoveUp()) { 
                     if(istrueUp && player.canMoveUp()){
                         myLoopUp();   
                     }
@@ -1599,10 +1591,11 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
             var i = 1;
             function myLoopRight(){
             setTimeout(function() {   
-                
-                buttonRight();    
-                i++;                    
-                if (i < 100 && player.canMoveRight()) { 
+                if(player.canMoveRight()){
+                    player.moveRight(gameTime); 
+                    i++;                    
+                } 
+                if (i < 40) { 
                     if(istrueRight && player.canMoveRight()){
                         myLoopRight();   
                     }
@@ -1625,14 +1618,16 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
     function holdDown(e)
     {
         istrueDown = true;
-        timer = setTimeout(function(){ makeChangeDown();},delay);
+        timer = setTimeout(function(){ 
+            makeChangeDown();},delay
+        );
         // Incase if you want to prevent Default functionality on mouse down
-        if (e.preventDefault) 
-        { 
-            e.preventDefault();
-        } else {
-            e.returnValue = false; 
-        }
+        e.preventDefault(); 
+        // { 
+        //     e.preventDefault();
+        // } else {
+        //     e.returnValue = false; 
+        // }
     }
     function makeChangeDown()
     {
@@ -1644,10 +1639,15 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
             var i = 1;
             function myLoopDown(){
             setTimeout(function() {   
+                if(player.canMoveDown()){
+                    player.moveDown(gameTime); 
+                    i++; 
+                }
+                else{
+                    moving = false;
+                }            
                 
-                buttonDown();    
-                i++;                    
-                if (i < 100 && player.canMoveDown()) { 
+                if (i < 40) { 
                     if(istrueDown && player.canMoveDown()){
                         myLoopDown();   
                     }
@@ -1666,29 +1666,78 @@ TileMap.prototype.buildMapFromData = function(d, w, h)
         moving = false;
     }
 
+    function preventDef(e){
+        e.preventDefault();
+        istrueDown = false;
+        istrueLeft = false;
+        istrueUp = false;
+        istrueRight = false;
+    }
 
+    function closeTweet(){
+        document.getElementsByTagName("span")[0].setAttribute("class", "tweet-hidden"); 
+        // console.log(tweetOpacity);
+    }
+    function showTweet(){
+        document.getElementsByTagName("span")[0].setAttribute("class", "tweet-container"); 
+        // console.log(tweetOpacity);
+    }
+
+    // document.addEventListener("click", (evt) => {
+    //     const flyoutElement = document.getElementById("tweet-card");
+    //     let targetElement = evt.target; // clicked element
+    
+    //         if (targetElement == flyoutElement) {
+    //             // This is a click inside. Do nothing, just return.
+    //         }
+    //         // Go up the DOM
+    //         targetElement = targetElement.parentNode;
+    //     } while (targetElement);
+    
+    //     // This is a click outside.
+    //     closeTweet();
+    // });
 
     return (
-        <div className="main-wrapper"><div className="containerStick">
+        <div className="main-wrapper">
+            <div className="containerStick">
             <div className="colStart">
-                <div className="buttonStick" onMouseDown={holdLeft} onMouseUp={revertLeft} onTouchStart={holdLeft} onTouchEnd={revertLeft}> 
+                <div className="buttonStick" onClick={preventDef} onMouseDown={holdLeft} onMouseUp={revertLeft} onTouchStart={holdLeft} onTouchEnd={revertLeft}> 
                     <FontAwesomeIcon icon={faArrowLeft} className="iconArrow" size="2x" />
                 </div>              
             </div>
             <div className="colMiddle">
-                <div className="buttonStick"   onMouseDown={holdUp} onMouseUp={revertUp} onTouchStart={holdUp} onTouchEnd={revertUp}>
+                <div className="buttonStick" onClick={preventDef} onMouseDown={holdUp} onMouseUp={revertUp} onTouchStart={holdUp} onTouchEnd={revertUp}>
                     <FontAwesomeIcon icon={faArrowUp} className="iconArrow" size="2x" />
                 </div>
-                <div className="buttonStick"   onMouseDown={holdDown} onMouseUp={revertDown} onTouchStart={holdDown} onTouchEnd={revertDown}>
+                <div className="buttonStick" onClick={preventDef}  onMouseDown={holdDown} onMouseUp={revertDown} onTouchStart={holdDown} onTouchEnd={revertDown}>
                     <FontAwesomeIcon icon={faArrowDown} className="iconArrow" size="2x" />
                  </div>
             </div>
             <div className="colEnd">
-                <div className="buttonStick"   onMouseDown={holdRight} onMouseUp={revertRight} onTouchStart={holdRight} onTouchEnd={revertRight}>
+                <div className="buttonStick" onClick={preventDef} onMouseDown={holdRight} onMouseUp={revertRight} onTouchStart={holdRight} onTouchEnd={revertRight}>
                     <FontAwesomeIcon icon={faArrowRight} className="iconArrow" size="2x" />
                  </div>
-            </div>       
+            </div>     
+             
         </div>
+        <span className="tweet-hidden">
+                <div className="tweet-card col-md-4" id="tweet-card">
+                    <div className="tweet-x" onClick={closeTweet}>X</div>
+                    <div className="tweet-title">Dies Natalis VI <br></br>Updates</div>
+                    <div className="tweet-body">
+                        <Timeline
+                            dataSource={{
+                                sourceType: 'profile',
+                                screenName: 'diesnatpknstan'
+                            }}
+                            options={{
+                                height: '400'
+                            }}
+                            />
+                    </div>
+                </div>
+            </span> 
             <canvas id="game" className="demo" width="2560" height="800"></canvas>
         </div>
     );

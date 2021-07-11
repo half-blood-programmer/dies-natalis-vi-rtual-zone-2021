@@ -1,0 +1,1 @@
+var tweet = '<a class="twitter-timeline" data-width="500" data-dnt="true" href="https://twitter.com/diesnatpknstan?ref_src=twsrc%5Etfw">Tweets by diesnatpknstan</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';

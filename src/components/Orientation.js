@@ -7,6 +7,9 @@ import ButtonHelper from './ButtonHelper';
 import Footer from './Footer';
 import TiledMap from './map/Grid';
 import Welcome from './Welcome';
+import skinsss from './map/Skin';
+import { changeSkin1 } from './Modal';
+
 
 export default function CekOrientation({skin}) {
 
@@ -14,7 +17,7 @@ export default function CekOrientation({skin}) {
     <div className="orientation">
       <div className="landscape">
         <Welcome />
-        <TiledMap skins="did-kun.png"/>
+          <TiledMap/>
         <Header />
         <ButtonHelper />
         <Footer />

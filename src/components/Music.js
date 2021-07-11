@@ -33,12 +33,17 @@ const Music = playornot  => {
   // console.log(playornot.setplay);
   const [playing, toggle] = useAudio(playornot);
 
-  return (    
-    <div className="buttonHelper" onClick={toggle}>
+  return (
+    <div>    
+    {playing ? <div className="buttonHelper" onClick={toggle}>
       
-        {playing ? <FontAwesomeIcon icon={faVolumeUp} className="icon" size="2x" /> 
-        : 
-        <FontAwesomeIcon icon={faVolumeMute} className="icon ahashakeheartache" size="2x" />}
+         <FontAwesomeIcon icon={faVolumeUp} className="icon" size="2x" /> 
+         
+    </div>:
+    <div className="buttonHelper ahashakeheartache" onClick={toggle}>
+
+     <FontAwesomeIcon icon={faVolumeMute} className="icon" size="2x" />
+    </div>}
     </div>
   );
 };

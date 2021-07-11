@@ -15,6 +15,7 @@ import TiledMap from './components/map/Grid';
 import Stick from './components/Stick';
 import Music from './components/Music';
 import CekOrientation from './components/Orientation';
+import Welcome from './components/Welcome';
 
 
 function App() {

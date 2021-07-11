@@ -35,6 +35,9 @@
 }
 
 @media only screen and (max-width: 1000px) {
+    .containerHelper{
+    margin-top: -10px;
+}
     .buttonHelper {
       width: 45px;
       height: 45px;
@@ -49,7 +52,7 @@
   }
 
 .ahashakeheartache {
-    animation: shake 4s;
+    animation: shake 3s;
     /* When the animation is finished, start again */
     animation-iteration-count: infinite;
 }

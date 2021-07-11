@@ -11,7 +11,7 @@ function Footer(){
                 <b><FontAwesomeIcon icon={faCopyright}/> PBS Dies Natalis VI </b>
             </div>
             <div className="sosmed">
-            <a href="https://line.me/ti/p/diesnatalispknstan" target="_blank">
+            <a href="https://line.me/ti/p/@diesnatalispknstan" target="_blank">
                 <FontAwesomeIcon icon={faLine}  className="icoFooter"  />
             </a>
             <a href="https://www.instagram.com/diesnatalispknstan/?hl=id" target="_blank">

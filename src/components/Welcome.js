@@ -3,6 +3,10 @@ import '../css/Welcome.css';
 import Modal from './Modal';
 import TiledMap from "./map/Grid";
 import Music from "./Music";
+import Header from "./Header";
+import Footer from "./Footer";
+import ButtonHelper from "./ButtonHelper";
+
 
 function handleChara(){
   const chara = "boy.png"; 
@@ -41,6 +45,7 @@ class Welcome extends Component  {
             <button type="button" className="button-welc" onClick={this.showModal}>
               {/* Open */}
             </button>
+            
           </main>
         );
       }

@@ -33,8 +33,8 @@ function popupMap(){
     footer :'',
     showCloseButton: true,
     showConfirmButton:false,
-    width: "600px",
-    padding: "80px 0 60px 0",
+    width: "700px",
+    padding: "80px 30px 60px 30px",
     html:''+getMap+'',
     background:"url('./background-pop-up.png",
     showClass: {
@@ -65,14 +65,14 @@ function screenshoot() {
     console.log(base64image);
     
     Swal.fire({
-          titleText:"Screenshoot Challange",
+          titleText:"Screenshot Challenge",
           footer :'',
           showCloseButton: true,
           showConfirmButton:false,
-          width: "600px",
+          width: "700px",
           height: "800px",
-          padding: "50px 20px 0 20px",
-          html: '<img src="'+base64image+'" alt="Red dot" style="width:560px;height:auto;margin:20px 0 20px 0;"/><br> <p style="padding: 0 20px 0 20px">Download hasil screenshoot <a href="'+base64image+'" download="Dienatalis VIrtual Zone">di sini</a> dan bagikan ke insta-story kamu, jangan lupa tag akun @diesnatpknstan ya!</p>',
+          padding: "50px 30px 0 30px",
+          html: '<img src="'+base64image+'" alt="Barang Hot" style="width:580px;height:auto;margin:20px 0 20px 0;"/><br> <p style="padding: 0 20px 0 20px">Download hasil screenshoot <a href="'+base64image+'" download="Dienatalis VIrtual Zone">di sini</a> dan bagikan ke insta-story kamu, jangan lupa tag akun @diesnatpknstan ya!</p>',
           footer:'',
           background:"url('./background-pop-up.png",
           className: "swal-popup",
