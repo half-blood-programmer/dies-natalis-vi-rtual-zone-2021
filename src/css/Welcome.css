@@ -12,24 +12,23 @@
   }
 
   .greeting{
-    width: 40%;
+    width: 250px;
     padding: 30px 0 0 40px;
   }
   .image{
-    width: 40%;
-    padding: 6%;
+    padding: 20px;
     text-align: center;
   }  
   .image > img{
     width: 150px;
     height: auto;
-    margin: auto;
+    margin: 0 0 0 0px;
   }
 
   .title-modal{
     font-family: "Press Start";
     padding-top:10px;
-    font-size: 36px;
+    font-size: 28px;
     color: black;
   }
 
@@ -53,13 +52,16 @@
     position: absolute;
     display: flex;
     flex-wrap: wrap;
-    width: 550px;
+    flex-direction: row;
+    justify-content: start;
+    width: 500px;
     height: auto;
     top:50%;
     left:50%;
+    padding: 20px;
     background: url("../img/assets/bg-pop-up-lands.png") 0 0 no-repeat;
     background-position: center center;
-    background-size: auto 100%;
+    background-size: contain;
     transform: translate(-50%,-50%);
     border-radius: 10px;
   }
@@ -93,14 +95,14 @@
       padding-left: 40px;
     }
   .modal-main {
-    width: 600px;
+    width: 500px;
     height: auto;
   }
   }
 
   @media only screen and (max-width: 800px) {
     .title-modal{
-      font-size: 18px;
+      font-size: 14px;
     }
     .paragraph{
       font-size: 12px;
@@ -121,7 +123,7 @@
       width: 400px;
     }
     .image > img{
-      width: 90px;
+      width: 50px;
     }
   }
 

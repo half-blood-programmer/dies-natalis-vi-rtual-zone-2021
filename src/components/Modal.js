@@ -71,7 +71,7 @@ const Modal = ({ handleClose, show, children }) => {
             Welcome to Dies Natalis VIrtual Zone, Come on explore !
           </div>
         </div>
-        <div className="image">
+        <div className="image col-md-6">
         <img src={Logo} alt='' className="logo"></img>
         </div>
         <div className="modal-footer">
