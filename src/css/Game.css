@@ -21,11 +21,12 @@
 .tweet-hidden{
 	visibility: hidden;
 	height: 0px;
+	opacity: 0;
 }
 
 .tweet-container{
 	position: absolute;
-	z-index: 9999;
+	z-index: 999;
 	width: 100vw;
 	height: auto;
 	min-height: 100vh;
