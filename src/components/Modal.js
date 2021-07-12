@@ -65,7 +65,7 @@ const Modal = ({ handleClose, show, children }) => {
         {/* {children} */}
         <div className="greeting">
           <div className="title-modal">
-            Hai Stanners!
+            Hi Stanners!
           </div>
           <div className="paragraph">
             Welcome to Dies Natalis VIrtual Zone, Come on explore !
