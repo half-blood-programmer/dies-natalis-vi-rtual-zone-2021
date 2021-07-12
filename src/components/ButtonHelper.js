@@ -61,7 +61,6 @@ function screenshoot() {
   playSound();
   html2canvas(document.body).then(function(canvas) {
     const base64image = canvas.toDataURL("image/png");
-    window.location.href = base64image;
     console.log(base64image);
     
     Swal.fire({

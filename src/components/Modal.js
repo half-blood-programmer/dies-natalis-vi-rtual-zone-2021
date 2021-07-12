@@ -68,7 +68,7 @@ const Modal = ({ handleClose, show, children }) => {
             Hi Stanners!
           </div>
           <div className="paragraph">
-            Welcome to Dies Natalis VIrtual Zone, Come on explore !
+            Welcome to Dies Natalis VIrtual Zone, Let's explore !
           </div>
         </div>
         <div className="image col-md-6">

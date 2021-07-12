@@ -8,11 +8,12 @@
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
     align-items: center;
     justify-content: flex-start;
-    font-size: calc(10px + 2vmin);
+    font-size: 48px;
     color: #292d3e;
     font-weight: 800;
     z-index: 99;
     margin:0px 20px 20px 20px;
+    letter-spacing: 2px;
     position: absolute;
     font-family: "Press Start";
     line-height: 2rem;
@@ -25,7 +26,9 @@
 }
 
 .title{
-  font-size: 24px;
+  font-size: 40px;
+  line-height: 3rem;
+  word-spacing: 4px;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -35,8 +38,9 @@
     height: 40px;
   }
   .title{
-    line-height: 1rem;
-    font-size: 12px;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+    font-size: 23px;
   }
   .logo{
     width: 45px;

@@ -14,7 +14,8 @@
 .swal-popup{
 	color: #8b8b8b;
 	font-family: "Press Start";
-	font-size: 24px;
+	font-size: 36px;
+	letter-spacing: 2px;
 	margin-top: 50px;
 }
 
@@ -82,7 +83,8 @@
 	padding: 40px 30px 30px 0;
 	line-height: 40px;
 	font-weight: 800;
-	font-size: 24px;
+	font-size: 36px;
+	letter-spacing: 2px;
 	margin: 0px;
 	font-family: "Press Start";
 }

@@ -28,7 +28,7 @@
   .title-modal{
     font-family: "Press Start";
     padding-top:10px;
-    font-size: 28px;
+    font-size: 46px;
     color: black;
   }
 
@@ -86,7 +86,7 @@
 
   @media only screen and (max-width: 1300px) {
     .title-modal{
-      font-size: 24px;
+      font-size: 40px;
     }
     .greeting{
       padding-left: 60px;
@@ -102,7 +102,7 @@
 
   @media only screen and (max-width: 800px) {
     .title-modal{
-      font-size: 14px;
+      font-size: 36px;
     }
     .paragraph{
       font-size: 12px;
